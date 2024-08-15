@@ -6,10 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstructionParser {
-    public List<Instruction> instructionParse(String input){
+    public List<Instruction> instructionParse(String input) {
         List<Instruction> instructions = new ArrayList<>();
-        for(char c : input.toCharArray()){
-            instructions.add(Instruction.valueOf(String.valueOf(c)));
+        for (char c : input.toCharArray()) {
+            if (c != ' ') {
+                try {
+                    instructions.add(Instruction.valueOf(String.valueOf(c)));
+                } catch (IllegalArgumentException e) {
+                    throw new IllegalArgumentException("Error: invalid instructions");
+                }
+            }
+
         }
         return instructions;
     }
