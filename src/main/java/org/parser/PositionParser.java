@@ -5,10 +5,32 @@ import org.marsrover.Position;
 
 public class PositionParser {
     public Position positionParse(String input){
-        String[] position = input.split(" ");
-        int x = Integer.parseInt(position[0]);
-        int y = Integer.parseInt(position[1]);
-        CompassDirection direction = CompassDirection.valueOf(position[2]);
+        String[] position = input.trim().split(" ");
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("Error: input cannot be empty");
+        }
+        if(position.length != 3){
+            throw new IllegalArgumentException("Error: input must contain three values");
+        }
+        int x;
+        int y;
+        CompassDirection direction;
+        try {
+            x = Integer.parseInt(position[0]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error: coordinate must be valid");
+        }
+        try {
+            y = Integer.parseInt(position[1]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error: coordinate must be valid");
+        }
+        try {
+            direction = CompassDirection.valueOf(position[2]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error: direction must be valid");
+        }
+
         return new Position(x, y, direction);
     }
 }

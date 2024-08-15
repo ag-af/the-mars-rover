@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class PlateauParserTest {
-    public PlateauParser parser = new PlateauParser();
+    private final PlateauParser parser = new PlateauParser();
     @Test
     @DisplayName("Testing valid plateau size")
     public void testValidPlateauSize(){
