@@ -1,4 +1,4 @@
-package parser;
+package org.parser;
 
 import org.marsrover.CompassDirection;
 import org.marsrover.Position;

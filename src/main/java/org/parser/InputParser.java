@@ -1,4 +1,4 @@
-package parser;
+package org.parser;
 
 import org.marsrover.Instruction;
 import org.marsrover.PlateauSize;
