@@ -1,14 +1,16 @@
 package org.marsrover;
 
+import java.util.Objects;
+
 public class Position {
     private int x;
     private int y;
-    private CompassDirection facing; // this type can be whatever your direction enum is called
+    private CompassDirection direction;// this can be whatever your direction enum is called
 
-    public Position(int x, int y, CompassDirection facing) {
+    public Position(int x, int y, CompassDirection direction) {
         this.x = x;
         this.y = y;
-        this.facing = facing;
+        this.direction = direction;
     }
 
     public int getX() {
@@ -27,11 +29,12 @@ public class Position {
         this.y = y;
     }
 
-    public CompassDirection getFacing() {
-        return facing;
+    public CompassDirection getDirection() {
+        return direction;
     }
 
-    public void setFacing(CompassDirection facing) {
-        this.facing = facing;
+    public void setDirection(CompassDirection direction) {
+        this.direction = direction;
     }
+
 }

@@ -16,22 +16,22 @@ class PositionParserTest {
         Position result1 = parser.positionParse("1 2 N");
         assertEquals(1, result1.getX());
         assertEquals(2, result1.getY());
-        assertEquals(CompassDirection.N, result1.getFacing());
+        assertEquals(CompassDirection.N, result1.getDirection());
 
         Position result2 = parser.positionParse("1 2 E");
         assertEquals(1, result2.getX());
         assertEquals(2, result2.getY());
-        assertEquals(CompassDirection.E, result2.getFacing());
+        assertEquals(CompassDirection.E, result2.getDirection());
 
         Position result3 = parser.positionParse("1 2 S");
         assertEquals(1, result3.getX());
         assertEquals(2, result3.getY());
-        assertEquals(CompassDirection.S, result3.getFacing());
+        assertEquals(CompassDirection.S, result3.getDirection());
 
         Position result4 = parser.positionParse("1 2 W");
         assertEquals(1, result4.getX());
         assertEquals(2, result4.getY());
-        assertEquals(CompassDirection.W, result4.getFacing());
+        assertEquals(CompassDirection.W, result4.getDirection());
 
     }
 

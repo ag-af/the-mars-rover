@@ -6,22 +6,22 @@ import java.util.Map;
 public enum Instruction {
     L, R, M;
 
-    private static final Map<Character, Instruction> charMap = new HashMap<>();
-   static {
-       charMap.put('L', L);
-       charMap.put('R', R);
-       charMap.put('M', M);
+//    private static final Map<Character, Instruction> charMap = new HashMap<>();
+//   static {
+//       charMap.put('L', L);
+//       charMap.put('R', R);
+//       charMap.put('M', M);
     }
 
-    public static Instruction instructionMap(char c){
-       Instruction instruction = charMap.get(c);
-       if (instruction == null) {
-           throw new IllegalArgumentException("Error: instructions cannot be empty");
-       }
-
-       return instruction;
-    }
-}
+//    public static Instruction instructionMap(char c){
+//       Instruction instruction = charMap.get(c);
+//       if (instruction == null) {
+//           throw new IllegalArgumentException("Error: instructions cannot be empty");
+//       }
+//
+//       return instruction;
+//    }
+//}
 
 //Static map to store character to enum (static: shared with all instances of the enum) (final: cannot be changed)
 //Key is a character (L,R,M), value is instruction
