@@ -17,5 +17,22 @@ public class Plateau {
 
     public void addRover(Rover rover){
         Position position = rover.getPosition();
+        if(isPositionOccupied(position.getX(), position.getY())) {
+            throw new IllegalArgumentException("Position is occupied");
+        }
+        if (position.getX() < 0 || position.getX() >= size.getWidth() ||
+        position.getY() <0 || position.getY() >= size.getHeight()) {
+            throw new IllegalArgumentException("Position is out of bounds");
+        }
+        rovers.add(rover);
+    }
+
+    public boolean isPositionOccupied(int x, int y){
+        return rovers.stream().anyMatch(r -> r.getPosition().getX() == x &&
+                r.getPosition().getY() == y);
+    }
+
+    public Set<Rover> getRovers(){
+        return rovers;
     }
 }
