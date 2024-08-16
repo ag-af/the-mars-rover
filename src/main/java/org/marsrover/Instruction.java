@@ -18,6 +18,7 @@ public enum Instruction {
        if (instruction == null) {
            throw new IllegalArgumentException("Error: instructions cannot be empty");
        }
+
        return instruction;
     }
 }
