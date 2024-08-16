@@ -1,39 +1,40 @@
 package org.marsrover;
 
 //Class for rover's position and current direction the rover is facing
-public class Rover{
+public class Rover {
     public CompassDirection facingDirection;
-//    private Position position;
+    private Position position;
 
-//Initialise rover with initial direction
-    public Rover(CompassDirection initialDirection) {
-        if(initialDirection == null) {
+    //Initialise rover with initial direction
+    public Rover(int initialX, int initialY, CompassDirection initialDirection) {
+        if (initialDirection == null) {
             throw new IllegalArgumentException("Error: invalid initial direction");
         }
         this.facingDirection = initialDirection;
-//        this.position = initialPosition;
+        this.position = new Position(initialX, initialY, initialDirection);
     }
 
 
-//Getter to access facing direction
+    //Getter to access facing direction
     public CompassDirection getFacingDirection() {
         return facingDirection;
     }
 
-//    public Position getPosition(){
-//        return position;
-//    }
-//
+    public Position getPosition() {
+        return position;
+    }
+
 //    public void setPosition(Position position){
 //        this.position = position;
 //    }
 
-//Rotate the rover based on instruction
+    //Rotate the rover based on instruction
     public void rotate(Instruction instruction) {
 //Check for null
         if (instruction == null) {
             throw new IllegalArgumentException("Error: instructions cannot be empty");
         }
+
 
 //L calls rotateLeft, R calls rotateRight, default throws exception if instruction is not valid (Moving forward does not change direction)
         switch (instruction) {
@@ -45,7 +46,8 @@ public class Rover{
                 break;
             case M:
                 break;
-            default: throw new IllegalArgumentException("Error: invalid instructions");
+            default:
+                throw new IllegalArgumentException("Error: invalid instructions");
         }
     }
 
@@ -67,27 +69,34 @@ public class Rover{
                 facingDirection = CompassDirection.N;
                 break;
         }
+        position.setDirection(facingDirection);
     }
 //        position = new Position(position.getX(), position.getY(), newDirection);
 //        }
 
     private void rotateRight() {
 //        CompassDirection newDirection = switch (position.getDirection()) {
-            switch (facingDirection) {
-                case N:
-                    facingDirection = CompassDirection.E;
-                    break;
-                case E:
-                    facingDirection = CompassDirection.S;
-                    break;
-                case S:
-                    facingDirection = CompassDirection.W;
-                    break;
-                case W:
-                    facingDirection = CompassDirection.N;
-                    break;
-            }
+        switch (facingDirection) {
+            case N:
+                facingDirection = CompassDirection.E;
+                break;
+            case E:
+                facingDirection = CompassDirection.S;
+                break;
+            case S:
+                facingDirection = CompassDirection.W;
+                break;
+            case W:
+                facingDirection = CompassDirection.N;
+                break;
         }
+        position.setDirection(facingDirection);
+    }
+
+    public void moveForward() {
+        position.moveForward();
+    }
+}
 //        position = new Position(position.getX(), position.getY(), newDirection);
 //        }
 //    public void move(Instruction instruction){
@@ -110,5 +119,4 @@ public class Rover{
 //        }
 //        }
 //
-    }
 

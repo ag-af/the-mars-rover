@@ -37,4 +37,24 @@ public class Position {
         this.direction = direction;
     }
 
+    public void moveForward() {
+        switch (direction) {
+            case N -> {
+                y+= 1;
+                break;
+            }
+            case E -> {
+                x+= 1;
+                break;
+            }
+            case S -> {
+                y-= 1;
+                break;
+            }
+            case W -> {
+                x-= 1;
+                break;
+            }
+        }
+    }
 }

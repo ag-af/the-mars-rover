@@ -14,7 +14,7 @@ class RoverTest {
     @Test
     @DisplayName("Testing left rotation")
     public void testRotateLeft() {
-        Rover rover = new Rover(CompassDirection.N);
+        Rover rover = new Rover(0,0, CompassDirection.N);
         rover.rotate(Instruction.L);
         assertEquals(CompassDirection.W, rover.getFacingDirection());
 
@@ -31,7 +31,7 @@ class RoverTest {
     @Test
     @DisplayName("Testing right rotation")
     public void testRotateRight() {
-        Rover rover = new Rover(CompassDirection.N);
+        Rover rover = new Rover(0,0,CompassDirection.N);
         rover.rotate(Instruction.R);
         assertEquals(CompassDirection.E, rover.getFacingDirection());
 
@@ -48,7 +48,7 @@ class RoverTest {
     @Test
     @DisplayName("Testing null instruction")
     public void testNullInstruction() {
-        Rover rover = new Rover(CompassDirection.N);
+        Rover rover = new Rover(0,0, CompassDirection.N);
        Exception exception = assertThrows(IllegalArgumentException.class,
                () -> { rover.rotate(null);
        });
@@ -60,31 +60,65 @@ class RoverTest {
 //    @Test
 //    @DisplayName("Testing invalid instruction")
 //    public void testInvalidInstruction() {
-//        Rover rover = new Rover(CompassDirection.N);
+//        Rover rover = new Rover(0,0, CompassDirection.N);
 //        Exception exception = assertThrows(IllegalArgumentException.class,
 //                () -> { rover.rotate(Instruction.valueOf("A"));
 //                });
 //        assertTrue(exception.getMessage().contains("Error: invalid instruction"));
 //    }
 
-//    @Test
-//    @DisplayName("Testing null instruction")
-//    public void testMoveFowardNorth() {
-//        Rover rover = new Rover(new Position(0, 0, CompassDirection.N));
-//        rover.move(Instruction.M);
-//        Position expectedPosition = new Position(0, 1, CompassDirection.N);
-//        assertEquals(expectedPosition, rover.getPosition());
-//    }
 
-//    public void setUp() {
-//        rover = new Rover(new Position(0,0, CompassDirection.N));
-//    }
-//    @Test
-//    @DisplayName("Testing")
-//    public void testRotateLeftFromNorth() {
-//        rover.rotate(Instruction.L);
-//        Position expectedPosition = new Position(0, 0, CompassDirection.W);
-//        assertEquals(expectedPosition, rover.getPosition());
-//    }
+    @Test
+    @DisplayName("Testing initial position")
+    public void testInitialPosition() {
+        rover = new Rover(0, 0, CompassDirection.N);
+        Position pos1 = rover.getPosition();
+        assertEquals(0, pos1.getX());
+        assertEquals(0, pos1.getY());
+        assertEquals(CompassDirection.N, pos1.getDirection());
+    }
+
+    @Test
+    @DisplayName("Testing rotate left from North")
+    public void testRotateLeftFromNorth() {
+        rover = new Rover(0, 0, CompassDirection.N);
+        rover.rotate(Instruction.L);
+        assertEquals(CompassDirection.W, rover.getFacingDirection());
+    }
+
+    @Test
+    @DisplayName("Testing rotate right from North")
+    public void testRotateRightFromNorth() {
+        rover = new Rover(0, 0, CompassDirection.N);
+        rover.rotate(Instruction.R);
+        assertEquals(CompassDirection.E, rover.getFacingDirection());
+    }
+
+    @Test
+    @DisplayName("Testing move forward from North")
+    public void testMoveForwardFromNoth() {
+        rover = new Rover(0, 0, CompassDirection.N);
+        rover.rotate(Instruction.M);
+        Position pos1 = rover.getPosition();
+        assertEquals(0, pos1.getX(), pos1.getY());
+    }
+
+    @Test
+    @DisplayName("Testing move forward from East")
+    public void testMoveForwardFromEast() {
+        rover = new Rover(0, 0, CompassDirection.E);
+        rover.rotate(Instruction.M);
+        Position pos1 = rover.getPosition();
+        assertEquals(0, pos1.getX(), pos1.getY());
+    }
+
+    @Test
+    @DisplayName("Testing null direction")
+    public void testNullDirection() {
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> { new Rover(0,0, null);
+        });
+        assertTrue(exception.getMessage().contains("Error: invalid initial direction"));
+    }
 
 }
